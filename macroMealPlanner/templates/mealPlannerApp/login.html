@@ -1,11 +1,41 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
 </head>
 <body>
-    <h1>Login</h1>
+    <div class="container">
+        <div class="left">
+            <h1>Log in</h1>
+            <div class="form-container">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username">
+        
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password">
+            </div>
+            <button>Log in</button>
+            <p>Do not have an account? <a href="/signup">Sign up</a></p>
+        </div>
+
+        <div class="right">
+            <div class="slider">
+                <div class="slides">
+                    <div class="slide"><img src="{% static 'image/chicken.webp' %}" alt="Grilled Chicken and Veggies"></div>
+                    <div class="slide"><img src="{% static 'image/pasta.webp' %}" alt="Pasta with Tomato Sauce"></div>
+                    <div class="slide"><img src="{% static 'image/steak.webp' %}" alt="Grilled Steak"></div>
+                    <!-- Duplicated so the transition is smooth -->
+                    <div class="slide"><img src="{% static 'image/chicken.webp' %}" alt="Grilled Chicken and Veggies"></div>
+                    <div class="slide"><img src="{% static 'image/pasta.webp' %}" alt="Pasta with Tomato Sauce"></div>
+                    <div class="slide"><img src="{% static 'image/steak.webp' %}" alt="Grilled Steak"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
