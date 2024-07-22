@@ -1,6 +1,8 @@
 from django.urls import path
 from mealPlannerApp import views
 
+app_name = "mealPlannerApp"
+
 urlpatterns = [
     path('', views.login_view, name='login'),
     path('signup/', views.signup_view, name='signup'),
