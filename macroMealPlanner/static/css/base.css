@@ -1,8 +1,33 @@
 body {
-   font-family: "Abhaya Libre", sans-serif;
+   height: 100vh;
+   margin: 0;
+   padding: 0;
+   width: 100%;
+   font-family: 'Abhaya Libre', serif;
    font-weight: 800;
    font-size: 3.25vh;
    background-color: #fff4e7;
+}
+
+.container {
+   display: flex;
+   flex-direction: row;
+   width: 100%;
+   height: 100vh;
+   margin: 0;  
+   padding: 0; 
+}
+
+.left {
+   background-color: #5eb456;
+   width: 20%;
+   height: 100%;
+}
+
+.right {
+   width: 80%;
+   background-color: #fff4e7;
+   padding: 3vh;
 }
 
 .nav-color {

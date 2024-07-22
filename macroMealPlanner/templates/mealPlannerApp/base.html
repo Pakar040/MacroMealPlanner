@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
-
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,48 +13,49 @@
 </head>
 
 <body>
-   <div class="container-fluid">
-      <div class="row flex-nowrap">
-         <div class="col-auto col-md-2 min-vh-100" style="background-color: #5eb456; position: relative;">
-            <div class="p-2" style="background-color: #5eb456;">
-               <ul class="nav nav-pills flex-column mt-4">
-                  <li class="nav-item">
-                     <a href="/macros" class="nav-link nav-color" aria-current="page">
-                        <span class="material-symbols-outlined">
-                           add_circle
-                        </span>
-                        Add Macros
-                     </a>
-                  </li>
-                  <li class="nav-item">
-                     <a href="/food" class="nav-link nav-color" aria-current="page">
-                        <span class="material-symbols-outlined">
-                           restaurant
-                        </span>
-                        Add Food
-                     </a>
-                  </li>
-                  <li class="nav-item">
-                     <a href="/plan" class="nav-link nav-color" aria-current="page">
-                        <span class="material-symbols-outlined">
-                           dinner_dining
-                        </span>
-                        Plan
-                     </a>
-                  </li>
-               </ul>
-               <ul class="nav nav-pills flex-column mt-auto" style="position: absolute; bottom: 0; width: 100%;">
-                  <li class="nav-item">
-                     <a href="/" class="nav-link nav-color" aria-current="page" style="margin-bottom: 4vh;">
-                        <span class="material-symbols-outlined">
-                           logout
-                        </span>
-                        Logout
-                     </a>
-                  </li>
-               </ul>
-            </div>
-         </div>
+   <div class="container">
+      <div class="container-fluid left">
+         <ul class="nav nav-pills flex-column mt-4">
+            <li class="nav-item">
+               <a href="/macros" class="nav-link nav-color" aria-current="page">
+                  <span class="material-symbols-outlined">
+                     add_circle
+                  </span>
+                  Add Macros
+               </a>
+            </li>
+            <li class="nav-item">
+               <a href="/food" class="nav-link nav-color" aria-current="page">
+                  <span class="material-symbols-outlined">
+                     restaurant
+                  </span>
+                  Add Food
+               </a>
+            </li>
+            <li class="nav-item">
+               <a href="/plan" class="nav-link nav-color" aria-current="page">
+                  <span class="material-symbols-outlined">
+                     dinner_dining
+                  </span>
+                  Plan
+               </a>
+            </li>
+         </ul>
+         <ul class="nav nav-pills flex-column mt-auto" style="position: absolute; bottom: 0; width: 100%;">
+            <li class="nav-item">
+               <a href="/" class="nav-link nav-color" aria-current="page" style="margin-bottom: 4vh;">
+                  <span class="material-symbols-outlined">
+                     logout
+                  </span>
+                  Logout
+               </a>
+            </li>
+         </ul>
+      </div>
+      <div class="right">
+         {% block content %}
+         
+         {% endblock %}
       </div>
    </div>
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
