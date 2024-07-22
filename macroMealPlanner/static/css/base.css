@@ -1,0 +1,13 @@
+body {
+   font-family: "Abhaya Libre", sans-serif;
+   font-weight: 800;
+   font-size: 3.25vh;
+}
+
+.nav-color {
+   color: #fff4e7;
+}
+
+.nav-color:hover {
+   color: #FFD39F;
+}
