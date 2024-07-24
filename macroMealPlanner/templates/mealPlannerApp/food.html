@@ -1,12 +1,62 @@
 {% extends "mealPlannerApp/base.html" %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Food</title>
-</head>
-<body>
-    <h1>Food</h1>
-</body>
-</html>
+
+{% block content %}
+<style>
+    .container h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .container label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+    .container input[type="text"] {
+        width: calc(100% - 22px);
+        padding: 1.5vh 1.5vh;
+        margin-bottom: 10px;
+        border: 1px solid #000;
+        border-radius: 4vh;
+        background-color: #fff4e7;
+    }
+    .container input[type="submit"] {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        background-color: #66b36e;
+        color: white;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+    }
+    .container input[type="submit"]:hover {
+        background-color: #4f9a55;
+    }
+</style>
+    <h2>Nutrient</h2>
+    <form action="/save_food" method="post">
+        <label for="food-name">Name of food</label>
+        <input type="text" id="food-name" name="food-name">
+        
+        <label for="protein">Protein</label>
+        <input type="text" id="protein" name="protein">
+        
+        <label for="carbs">Carbs</label>
+        <input type="text" id="carbs" name="carbs">
+        
+        <label for="fat">Fat</label>
+        <input type="text" id="fat" name="fat">
+        
+        <label for="sugar">Sugar</label>
+        <input type="text" id="sugar" name="sugar">
+        
+        <label for="sodium">Sodium</label>
+        <input type="text" id="sodium" name="sodium">
+        
+        <input type="submit" value="Save food">
+    </form>
+    {% endblock %}
+
+
+
+
