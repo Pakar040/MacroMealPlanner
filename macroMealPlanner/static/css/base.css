@@ -18,6 +18,19 @@ body {
    padding: 0; 
 }
 
+.container-fluid.left {
+   position: fixed;
+   top: 0;
+   left: 0;
+   height: 100vh;
+   width: 250px;
+   overflow-y: auto;
+}
+
+.right {
+   margin-left: 30vh;
+}
+
 .left {
    background-color: #5eb456;
    width: 20%;

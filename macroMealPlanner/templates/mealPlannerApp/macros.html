@@ -1,13 +1,31 @@
 {% extends "mealPlannerApp/base.html" %}
-<!DOCTYPE html>
-{% load static %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Macros</title>
-</head>
-<body>
-    <h1>Macros</h1>
-</body>
-</html>
+
+{% block content %}
+<style>
+    input[type="text"]{
+        width: 60%;
+        padding: 1vh 1vh;
+        margin: 0vh 1vh;
+        margin-top: 1vh;
+        margin-bottom: 5vh;
+        background-color: #fff4e7;
+        border: 0.25vh solid black;
+        border-radius: 4vh;
+    }
+
+    .form-container {
+        display: flex;
+        flex-direction: column;
+    }
+</style>
+<div class="form-container">
+    <label for="username">Protein</label>
+    <input type="text" id="protein" name="protein">
+
+    <label for="username">Fat</label>
+    <input type="text" id="Fat" name="Fat">
+
+    <label for="username">Carbs</label>
+    <input type="text" id="Carbs" name="Carbs">
+</div>
+{% endblock %}
