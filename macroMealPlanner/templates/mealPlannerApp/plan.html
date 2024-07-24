@@ -1,12 +1,131 @@
 {% extends "mealPlannerApp/base.html" %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plan</title>
-</head>
-<body>
-    <h1>Plan</h1>
-</body>
-</html>
+
+{% block content %}
+<style>
+    .radio-group {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .radio-group div {
+        flex-grow: 1;
+    }
+
+    /* Custom styling for radio buttons */
+    input[type="radio"] {
+        opacity: 0;
+        position: absolute;
+    }
+
+    input[type="radio"]+label {
+        position: relative;
+        padding-left: 35px;
+        cursor: pointer;
+        line-height: 20px;
+        display: inline-block;
+        color: #000;
+    }
+
+    input[type="radio"]+label:before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 20px;
+        height: 20px;
+        border: 2px solid #ddd;
+        border-radius: 50%;
+        background-color: #fff;
+    }
+
+    input[type="radio"]:checked+label:before {
+        border-color: #5eb456;
+    }
+
+    input[type="radio"]:checked+label:after {
+        content: '';
+        position: absolute;
+        width: 12px;
+        height: 12px;
+        top: 4px;
+        left: 4px;
+        border-radius: 50%;
+        background: #5eb456;
+    }
+
+    .submit {
+        margin-top: 2vh;
+    }
+
+    button {
+        border: 0.5vh solid transparent;
+        border-radius: 4vh;
+        background-color: #5eb456;
+        color: #fff4e7;
+        padding: 0.5vh 2vh;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: darkgreen;
+    }
+
+    .food,
+    .results {
+        margin: 2vh 0;
+        display: flex;
+        justify-content: center;
+    }
+</style>
+
+<div class="food">
+    <button type="button" onclick="selectFood()">Select food</button>
+</div>
+
+<form onsubmit="return showRecommendations()">
+    <div class="radio-group">
+        <div>
+            <input type="radio" id="dietChoice1" name="diet" value="Bulking">
+            <label for="dietChoice1">Bulking</label>
+        </div>
+        <div>
+            <input type="radio" id="dietChoice2" name="diet" value="Maintaining">
+            <label for="dietChoice2">Maintaining</label>
+        </div>
+        <div>
+            <input type="radio" id="dietChoice3" name="diet" value="Cutting">
+            <label for="dietChoice3">Cutting</label>
+        </div>
+    </div>
+    <div class="submit">
+        <button onclick="showRecommendations()" type="submit">Submit</button>
+    </div>
+</form>
+
+<div class="results">
+    <!-- Placeholder where recommendations will appear -->
+</div>
+
+<script>
+    function showRecommendations() {
+        const dietType = document.querySelector('input[name="diet"]:checked').value;
+        const resultsDiv = document.querySelector('.results');
+        // Sample data, replace with actual logic as needed
+        let recommendations = '';
+        if (dietType === 'Bulking') {
+            recommendations = '<p>Chicken - 200 grams <br> Rice - 150 grams</p>';
+        } else if (dietType === 'Maintaining') {
+            recommendations = '<p>Chicken - 150 grams <br> Rice - 100 grams</p>';
+        } else {
+            recommendations = '<p>Chicken - 100 grams <br> Rice - 50 grams</p>';
+        }
+        resultsDiv.innerHTML = recommendations;
+        return false; // Prevent form submission
+    }
+
+    function selectFood() {
+        alert("Food selection functionality not implemented yet.");
+    }
+</script>
+{% endblock %}
