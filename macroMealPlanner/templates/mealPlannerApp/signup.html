@@ -9,16 +9,24 @@
     <link rel="stylesheet" href="{% static 'css/login.css' %}">
 </head>
 <body>
-    <div class="container">
+<div class="container">
     <div class="left">
-    <h1>Sign Up</h1>
-    <div class="form-container">
-        <label for="username">Username</label>
-        <input type="text" id="username" name="username">
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password">
-    </div>
-        <button>Sign Up</button>
+        <h1>Sign Up</h1>
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-container">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password">
+            </div>
+            <button type="submit">Sign Up</button>
+        </form>
         <p>Already have an account? <a href="{% url 'mealPlannerApp:login' %}">Login in</a></p>
     </div>
     <div class="right">
