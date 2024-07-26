@@ -28,7 +28,7 @@ html, body {
    font-size: 5vh;
 }
 
-input[type="text"], input[type="password"], button {
+input[type="text"], input[type="password"] {
    width: 90%;
    padding: 1.75vh 1.75vh;
    margin: 0vh 1vh;
@@ -40,13 +40,15 @@ input[type="text"], input[type="password"], button {
 }
 
 button {
+   display: block;
    width: 30%;
    padding: 1vh 1vh;
-   margin: 2vh 1vh;
+   margin: 2vh auto;
    font-family: 'Abhaya Libre', serif;
    font-weight: 800;
    font-size: 3vh;
    background-color: #5eb456;
+   border-radius: 3vh;
    color: #fff4e7;
    border: none;
    cursor: pointer;
