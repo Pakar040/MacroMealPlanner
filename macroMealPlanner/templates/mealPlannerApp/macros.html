@@ -4,10 +4,9 @@
 
 {% block content %}
 <style>
-    input[type="text"]{
-        width: 60%;
-        padding: 1vh 1vh;
-        margin: 0vh 1vh;
+    input[type="text"], input[type="number"] {
+        width: 100%;
+        padding: 1vh;
         margin-top: 1vh;
         margin-bottom: 5vh;
         background-color: #fff4e7;
@@ -15,19 +14,73 @@
         border-radius: 4vh;
     }
 
+    button {
+        display: block;
+        width: auto;
+        padding: 1vh 1vh;
+        margin: 2vh 0;
+        font-family: 'Abhaya Libre', serif;
+        font-weight: 800;
+        font-size: 3vh;
+        background-color: #5eb456;
+        border-radius: 3vh;
+        color: #fff4e7;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    button:hover {
+        background-color: darkgreen;
+    }
+
+    .macros-btn:hover {
+        background-color: rgb(100, 0, 0);
+    }
+
     .form-container {
-        display: flex;
-        flex-direction: column;
+        max-width: 600px;
+        margin: auto;
+        padding: 20px;
+    }
+
+    .form-label {
+        margin-right: 10px;
+        white-space: nowrap;
     }
 </style>
-<div class="form-container">
-    <label for="username">Protein</label>
-    <input type="text" id="protein" name="protein">
 
-    <label for="username">Fat</label>
-    <input type="text" id="Fat" name="Fat">
-
-    <label for="username">Carbs</label>
-    <input type="text" id="Carbs" name="Carbs">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 col-md-6">
+            <div class="p-3">
+                <!-- Column 1 -->
+                <h1>Add Macros</h1>
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit">Save</button>
+                </form>
+            </div>
+        </div>
+        <div class="col-12 col-md-6">
+            <div class="p-3">
+                <!-- Column 2 -->
+                <h1>Current Macros</h1>
+                {% if macros_list %}
+                    <ul>
+                        {% for macros in macros_list %}
+                            <form action="{% url 'mealPlannerApp:delete_macros' macros.id %}" method="POST">
+                                {% csrf_token %}
+                                <button class="macros-btn">{{macros.name}} - Protein: {{ macros.protein }}, Fat: {{ macros.fat }}, Carbs: {{ macros.carbs }}</button>
+                            </form>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>No macros yet</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}

@@ -9,4 +9,5 @@ urlpatterns = [
     path('macros/', views.macros_view, name='macros'),
     path('food/', views.food_view, name='food'),
     path('plan/', views.plan_view, name='plan'),
+    path('delete_macros/<int:macros_id>', views.delete_macros, name='delete_macros')
 ]
