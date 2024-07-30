@@ -1,7 +1,7 @@
 from typing import Any
 from django import forms
 from django.contrib.auth.models import User
-from .models import Macros
+from .models import Macros, Food
 
 class SignupForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput)
@@ -24,4 +24,9 @@ class LoginForm(forms.Form):
 class MacrosForm(forms.ModelForm):
     class Meta:
         model = Macros
+        fields = ['name', 'protein', 'fat', 'carbs']
+
+class FoodForm(forms.ModelForm):
+    class Meta:
+        model = Food
         fields = ['name', 'protein', 'fat', 'carbs']

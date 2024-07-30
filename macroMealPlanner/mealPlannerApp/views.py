@@ -3,8 +3,8 @@ from django.urls import reverse
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .forms import SignupForm, LoginForm, MacrosForm
-from .models import Macros
+from .forms import SignupForm, LoginForm, MacrosForm, FoodForm
+from .models import Macros, Food
 
 # Create your views here.
 def login_view(request):
@@ -74,7 +74,30 @@ def delete_macros(request, macros_id):
 
 @login_required
 def food_view(request):
-    return render(request, 'mealPlannerApp/food.html')
+    if request.method == "POST":
+        form = FoodForm(request.POST)
+
+        if form.is_valid():
+            food = form.save(commit=False)
+            food.user = request.user
+            food.save()
+            return redirect(reverse('mealPlannerApp:food'))
+
+    else:
+        form = MacrosForm()
+
+    return render(request, 'mealPlannerApp/food.html', {
+        'form': form,
+        'food_list': Food.objects.filter(user=request.user)
+        })
+
+@login_required
+def delete_food(request, food_id):
+    food = get_object_or_404(Food, id=food_id, user=request.user)
+    if request.method == "POST":
+        food.delete()
+        return redirect(reverse('mealPlannerApp:food'))
+    return redirect(reverse('mealPlannerApp:food'))
 
 @login_required
 def plan_view(request):

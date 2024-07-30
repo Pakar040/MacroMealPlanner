@@ -4,6 +4,29 @@
 
 {% block content %}
 <style>
+    button {
+        display: block;
+        width: auto;
+        padding: 1vh 1vh;
+        margin: 2vh 0;
+        font-family: 'Abhaya Libre', serif;
+        font-weight: 800;
+        font-size: 3vh;
+        background-color: #5eb456;
+        border-radius: 3vh;
+        color: #fff4e7;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    button:hover {
+        background-color: darkgreen;
+    }
+
+    .food-btn:hover {
+        background-color: rgb(100, 0, 0);
+    }
     .container h2 {
         text-align: center;
         margin-bottom: 20px;
@@ -13,7 +36,7 @@
         margin-bottom: 5px;
         font-weight: bold;
     }
-    .container input[type="text"] {
+    .container input[type="text"], input[type="number"] {
         width: calc(100% - 22px);
         padding: 1.5vh 1.5vh;
         margin-bottom: 10px;
@@ -35,29 +58,40 @@
         background-color: #4f9a55;
     }
 </style>
-    <h2>Nutrient</h2>
-    <form action="/save_food" method="post">
-        <label for="food-name">Name of food</label>
-        <input type="text" id="food-name" name="food-name">
-        
-        <label for="protein">Protein</label>
-        <input type="text" id="protein" name="protein">
-        
-        <label for="carbs">Carbs</label>
-        <input type="text" id="carbs" name="carbs">
-        
-        <label for="fat">Fat</label>
-        <input type="text" id="fat" name="fat">
-        
-        <label for="sugar">Sugar</label>
-        <input type="text" id="sugar" name="sugar">
-        
-        <label for="sodium">Sodium</label>
-        <input type="text" id="sodium" name="sodium">
-        
-        <input type="submit" value="Save food">
-    </form>
-    {% endblock %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 col-md-6">
+            <div class="p-3">
+                <!-- Column 1 -->
+                <h1>Add Food</h1>
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit">Save</button>
+                </form>
+            </div>
+        </div>
+        <div class="col-12 col-md-6">
+            <div class="p-3">
+                <!-- Column 2 -->
+                <h1>Current Food</h1>
+                {% if food_list %}
+                    <ul>
+                        {% for food in food_list %}
+                            <form action="{% url 'mealPlannerApp:delete_food' food.id %}" method="POST">
+                                {% csrf_token %}
+                                <button class="food-btn">{{food.name}} - Protein: {{ food.protein }}, Fat: {{ food.fat }}, Carbs: {{ food.carbs }}</button>
+                            </form>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>No macros yet</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
 
 
 
