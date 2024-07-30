@@ -29,4 +29,4 @@ class MacrosForm(forms.ModelForm):
 class FoodForm(forms.ModelForm):
     class Meta:
         model = Food
-        fields = ['name', 'protein', 'fat', 'carbs']
+        fields = ['name', 'units', 'amount', 'protein', 'fat', 'carbs']

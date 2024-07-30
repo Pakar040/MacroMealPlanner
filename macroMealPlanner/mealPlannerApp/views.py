@@ -84,7 +84,7 @@ def food_view(request):
             return redirect(reverse('mealPlannerApp:food'))
 
     else:
-        form = MacrosForm()
+        form = FoodForm()
 
     return render(request, 'mealPlannerApp/food.html', {
         'form': form,

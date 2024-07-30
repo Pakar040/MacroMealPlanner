@@ -24,6 +24,8 @@ class Macros(models.Model):
 class Food(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='food')
     name = models.CharField(max_length=100)
+    units = models.CharField(max_length=100)
+    amount = models.DecimalField(max_digits=5, decimal_places=2)
     protein = models.DecimalField(max_digits=4, decimal_places=0)
     fat = models.DecimalField(max_digits=4, decimal_places=0)
     carbs = models.DecimalField(max_digits=4, decimal_places=0)
