@@ -48,6 +48,11 @@
         margin-right: 10px;
         white-space: nowrap;
     }
+
+    .scrollable-area {
+        max-height: 80vh; /* Adjust based on your preference */
+        overflow-y: auto; /* Enables vertical scrolling */
+    }
 </style>
 
 <div class="container-fluid">
@@ -68,6 +73,7 @@
                 <!-- Column 2 -->
                 <h1>Current Macros</h1>
                 {% if macros_list %}
+                <div class="p-3 scrollable-area">
                     <ul>
                         {% for macros in macros_list %}
                             <form action="{% url 'mealPlannerApp:delete_macros' macros.id %}" method="POST">
@@ -76,6 +82,7 @@
                             </form>
                         {% endfor %}
                     </ul>
+                </div>
                 {% else %}
                     <p>No macros yet</p>
                 {% endif %}

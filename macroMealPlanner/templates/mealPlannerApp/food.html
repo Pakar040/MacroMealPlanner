@@ -57,6 +57,11 @@
     .container input[type="submit"]:hover {
         background-color: #4f9a55;
     }
+
+    .scrollable-area {
+        max-height: 80vh; /* Adjust based on your preference */
+        overflow-y: auto; /* Enables vertical scrolling */
+    }
 </style>
 <div class="container-fluid">
     <div class="row">
@@ -76,6 +81,7 @@
                 <!-- Column 2 -->
                 <h1>Current Food</h1>
                 {% if food_list %}
+                <div class="p-3 scrollable-area">
                     <ul>
                         {% for food in food_list %}
                             <form action="{% url 'mealPlannerApp:delete_food' food.id %}" method="POST">
@@ -84,8 +90,9 @@
                             </form>
                         {% endfor %}
                     </ul>
+                </div>
                 {% else %}
-                    <p>No macros yet</p>
+                    <p>No foods yet</p>
                 {% endif %}
             </div>
         </div>
