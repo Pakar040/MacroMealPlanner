@@ -104,22 +104,30 @@
         border-color: #5eb456;
     }
 
+    .custom-dropdown {
+        width: calc(100% - 22px);
+        padding: 1.5vh 1.5vh;
+        margin-bottom: 10px;
+        border: 1px solid #000;
+        border-radius: 4vh;
+        background-color: #fff4e7;
+    }
+
 </style>
 
 <div class="food">
     <button type="button" data-toggle="modal" data-target="#exampleModal">Select food</button>
 </div>
 
-<!-- Scrollable modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-scrollable">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Select Food</h5>
-            </div>
-            <div class="modal-body">
-                <!-- Form Start -->
-                <form>
+<form onsubmit="return showRecommendations()">
+    <!-- Scrollable modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Select Food</h5>
+                </div>
+                <div class="modal-body">
                     <div class="form-check">
                         <input type="checkbox" class="form-check-input" id="exampleCheck1">
                         <label class="form-check-label" for="exampleCheck1">Chicken</label>
@@ -132,34 +140,23 @@
                         <input type="checkbox" class="form-check-input" id="exampleCheck1">
                         <label class="form-check-label" for="exampleCheck1">Steak</label>
                     </div>
-                </form>
-                <!-- Form End -->
-            </div>
-            <div class="modal-footer">
-                <button type="button" data-dismiss="modal" class="close">Close</button>
-                <button type="button">Save</button>
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="close">Close</button>
+                    <!-- <button type="button">Save</button> -->
+                </div>
             </div>
         </div>
     </div>
-</div>
-
-<form onsubmit="return showRecommendations()">
-    <div class="radio-group">
-        <div>
-            <input type="radio" id="dietChoice1" name="diet" value="Bulking">
-            <label for="dietChoice1">Bulking</label>
-        </div>
-        <div>
-            <input type="radio" id="dietChoice2" name="diet" value="Maintaining">
-            <label for="dietChoice2">Maintaining</label>
-        </div>
-        <div>
-            <input type="radio" id="dietChoice3" name="diet" value="Cutting">
-            <label for="dietChoice3">Cutting</label>
-        </div>
-    </div>
-    <div class="submit">
-        <button onclick="showRecommendations()" type="submit">Submit</button>
+    <!-- Drop Down -->
+    <div class="form-group">
+        <label for="macroSelect">Select Macro</label>
+        <select class="form-control custom-dropdown" id="macroSelect" name="macro">
+            <option value="cut">Cut</option>
+            <option value="bulk">Bulk</option>
+            <option value="maintain">Maintain</option>
+        </select>
     </div>
 </form>
 
@@ -183,20 +180,6 @@
         resultsDiv.innerHTML = recommendations;
         return false; // Prevent form submission
     }
-
-    document.addEventListener('DOMContentLoaded', function() {
-        // Get the close button
-        var closeButton = document.querySelector('.close');
-
-        // Add click event listener to the close button
-        closeButton.addEventListener('click', function() {
-            // Select all checkboxes within the modal and uncheck them
-            var checkboxes = document.querySelectorAll('#exampleModal .form-check-input');
-            checkboxes.forEach(function(checkbox) {
-            checkbox.checked = false;
-            });
-        });
-    });
 </script>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
