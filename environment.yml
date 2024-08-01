@@ -24,4 +24,6 @@ dependencies:
   - wheel=0.43.0
   - xz=5.4.6
   - zlib=1.2.13
+  - pip:
+      - django-seed 
 prefix: /opt/anaconda3/envs/macroMealPlannerEnv

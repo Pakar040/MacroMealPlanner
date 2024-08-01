@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'mealPlannerApp',
+    'django_seed',
 ]
 
 MIDDLEWARE = [
