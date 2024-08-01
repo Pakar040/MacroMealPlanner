@@ -29,3 +29,11 @@ Create an admin user to access the Django admin interface:
 ```
 python manage.py createsuperuser
 ```
+
+### Updating Environmnet
+Add to the `environment.yml` file for new dependancies
+
+To update your environment match the depedancies:
+```
+conda env update -f environment.yml
+```
