@@ -4,6 +4,16 @@
 
 {% block content %}
 <style>
+    h1 {
+        display: block;
+        width: 100%;
+    }
+
+    ul {
+        display: block;
+        width: 100%;
+    }
+
     .radio-group {
         display: flex;
         align-items: center;
@@ -115,11 +125,11 @@
 
 </style>
 
-<div class="food">
-    <button type="button" data-toggle="modal" data-target="#exampleModal">Select food</button>
-</div>
-
-<form>
+<form method="POST">
+    {% csrf_token %}
+    <div class="food">
+        <button type="button" data-toggle="modal" data-target="#exampleModal">Select food</button>
+    </div>
     <!-- Scrollable modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable">
@@ -128,23 +138,15 @@
                     <h5 class="modal-title" id="exampleModalLabel">Select Food</h5>
                 </div>
                 <div class="modal-body">
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        <label class="form-check-label" for="exampleCheck1">Chicken</label>
-                    </div>
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        <label class="form-check-label" for="exampleCheck1">Rice</label>
-                    </div>
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        <label class="form-check-label" for="exampleCheck1">Steak</label>
-                    </div>
-                    
+                    {% for checkbox in form.foods %}
+                        <div class="form-check">
+                            {{ checkbox.tag }}
+                            <label for="{{ checkbox.id_for_label }}">{{ checkbox.choice_label }}</label>
+                        </div>
+                    {% endfor %}
                 </div>
                 <div class="modal-footer">
                     <button type="button" data-dismiss="modal" class="close">Close</button>
-                    <!-- <button type="button">Save</button> -->
                 </div>
             </div>
         </div>
@@ -152,17 +154,32 @@
     <!-- Drop Down -->
     <div class="form-group">
         <label for="macroSelect">Select Macro</label>
-        <select class="form-control custom-dropdown" id="macroSelect" name="macro">
-            <option value="cut">Cut</option>
-            <option value="bulk">Bulk</option>
-            <option value="maintain">Maintain</option>
-        </select>
+        {{ form.macros }}
     </div>
+    {% if form.errors %}
+    <div class="alert alert-danger">
+        <ul>
+        {% for field, errors in form.errors.items %}
+            <li>{{ field }}: {{ errors }}</li>
+        {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+    <button type="submit">Get recommendations</button>
 </form>
 
-<div class="results">
-    <!-- Placeholder where recommendations will appear -->
-</div>
+{% if recommendations %}
+    <div class="container mt-4">
+        <h1 class="mb-4">Recommendations:</h1>
+        <ul>
+            {% for food in recommendations %}
+                <li>
+                    <strong>{{ food.name }}:</strong> {{ food.amount_to_eat }} {{ food.units }}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>

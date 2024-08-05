@@ -1,4 +1,4 @@
-from typing import Any, Mapping
+from typing import Any
 from django import forms
 from django.contrib.auth.models import User
 from .models import Macros, Food
@@ -46,7 +46,10 @@ class MacroMealPlanForm(forms.Form):
         required=True,
     )
 
-    def __init__(self, *args, **kwargs) -> None:
+    def __init__(self, user, *args, **kwargs) -> None:
         super(MacroMealPlanForm, self).__init__(*args, **kwargs)
-        self.fields['foods'] = [(food.id, food.name) for food in Food.objects.all()]
-        self.fields['macros'] = [(macros.id, macros.name) for macros in Macros.objects.all()]
+        self.fields['foods'].choices = [(food.id, food.name) for food in Food.objects.filter(user=user)]
+        self.fields['macros'].choices = [(macros.id, macros.name) for macros in Macros.objects.filter(user=user)]
+
+        self.fields['foods'].widget.attrs.update({'class': 'form-check-input'})
+        self.fields['macros'].widget.attrs.update({'class': 'form-control custom-dropdown'})
