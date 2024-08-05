@@ -106,8 +106,6 @@ def plan_view(request):
     if request.method == "POST":
         form = MacroMealPlanForm(user=request.user, data=request.POST)
 
-        print(f"form.is_valid() = {form.is_valid()}")
-
         if form.is_valid():
             food_ids = form.cleaned_data['foods']
             macros_id = form.cleaned_data['macros']
