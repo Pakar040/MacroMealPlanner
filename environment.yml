@@ -26,5 +26,6 @@ dependencies:
   - zlib=1.2.13
   - pip:
     - faker
+    - faker-food 
 
 prefix: /opt/anaconda3/envs/macroMealPlannerEnv

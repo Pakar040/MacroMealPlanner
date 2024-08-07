@@ -2,6 +2,7 @@ import os
 import django
 import random
 from faker import Faker
+from faker_food import FoodProvider
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'macroMealPlanner.settings')
 django.setup()
@@ -10,6 +11,7 @@ from django.contrib.auth.models import User
 from mealPlannerApp.models import Macros, Food
 
 fake = Faker()
+fake.add_provider(FoodProvider)
 
 def generate_users(num_users):
    if num_users <= 10:
@@ -46,9 +48,9 @@ def generate_macros(num_macros):
       name = f"diet{i}"
       if Macros.objects.filter(user=user, name=name).exists():
          continue  # Skip this iteration to avoid violating unique_together constraint
-      protein = random.randint(20, 200)
-      fat = random.randint(20, 200)
-      carbs = random.randint(20, 200)
+      protein = random.randint(50, 250)
+      fat = random.randint(20, 250)
+      carbs = random.randint(20, 250)
       macro = Macros(user=user, name=name, protein=protein, fat=fat, carbs=carbs)
       macro.save()
       
@@ -70,14 +72,14 @@ def generate_foods(num_foods):
 
    for i in range(num_foods):
       user = random.choice(users)
-      name = "Steak"
+      name = fake.dish()
       # if Food.objects.filter(user=user).exists():
       #    continue
       units = "grams"
-      amount = round(random.random(), 2)
-      protein = random.randint(50, 1000)
-      fat = random.randint(50, 1000)
-      carbs = random.randint(50, 1000)
+      amount = (round(random.random(), 2) * 50.0) + 50.1
+      protein = random.randint(50, 250)
+      fat = random.randint(50, 250)
+      carbs = random.randint(50, 250)
       food = Food(user=user, name=name, units=units, amount=amount, protein=protein, fat=fat, carbs=carbs)
       food.save()
 
