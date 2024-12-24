@@ -50,9 +50,9 @@ def generate_macros(num_macros):
       name = f"diet{i}"
       if Macros.objects.filter(user=user, name=name).exists():
          continue  # Skip this iteration to avoid violating unique_together constraint
-      protein = random.randint(50, 250)
-      fat = random.randint(20, 250)
-      carbs = random.randint(20, 250)
+      protein = random.randint(500, 1300)
+      fat = random.randint(500, 1300)
+      carbs = random.randint(500, 1300)
       macro = Macros(user=user, name=name, protein=protein, fat=fat, carbs=carbs)
       macro.save()
       
