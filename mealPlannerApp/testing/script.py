@@ -10,6 +10,8 @@ django.setup()
 from django.contrib.auth.models import User
 from mealPlannerApp.models import Macros, Food
 
+USER_PASSWORD = 'password'
+
 fake = Faker()
 fake.add_provider(FoodProvider)
 
@@ -24,7 +26,7 @@ def generate_users(num_users):
    for i in range(num_users):
       username = fake.user_name()
       if not User.objects.filter(username=username).exists():
-         user = User.objects.create_user(username=username, password='password')
+         user = User.objects.create_user(username=username, password=USER_PASSWORD)
          user.save()
 
       if i % num == 0:

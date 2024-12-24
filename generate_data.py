@@ -1,4 +1,4 @@
-from mealPlannerApp.testing.script import generate_macros, generate_users, generate_foods
+from mealPlannerApp.testing.script import generate_macros, generate_users, generate_foods, USER_PASSWORD
 from django.contrib.auth.models import User
 from mealPlannerApp.models import Macros, Food
 
@@ -16,6 +16,7 @@ elif choice == 'c':
    generate_users(num_users=num_users)
    generate_macros(num_macros=num_macros)
    generate_foods(num_foods=num_foods)
+   print(f"\nThe password for all users is: {USER_PASSWORD}")
    print(f"Successfully add {num_users} User(s) and {num_macros} Macro(s) and {num_foods} Food(s)!")
 else:
    print("Not an option.")
